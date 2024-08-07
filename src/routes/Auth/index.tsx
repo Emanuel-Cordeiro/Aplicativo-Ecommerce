@@ -3,12 +3,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import SignIn from '../../screens/SignIn';
 
-const { Navigator, Screen } = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 export function AuthRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="SignIn" component={SignIn} />
-    </Navigator>
+    <Drawer.Navigator
+      initialRouteName="SignIn"
+      screenOptions={{ headerShown: false }}>
+      <Drawer.Screen name="SignIn" component={SignIn} />
+    </Drawer.Navigator>
   );
 }

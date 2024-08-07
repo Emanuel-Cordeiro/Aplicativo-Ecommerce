@@ -1,12 +1,12 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 import { ChildrenProp } from '../@types/children';
-
 import { formSignIn } from '../dto/formSignInDTO';
 
 type AuthContextData = {
   user: formSignIn;
-  signIn: (user: string, password: string) => formSignIn;
+  isLoading: boolean;
+  signIn: (user: string, password: string) => void;
 };
 
 export const AuthContext = createContext<AuthContextData>(
@@ -14,20 +14,30 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export function AuthContextProvider({ children }: ChildrenProp) {
-  const [user, setUser] = useState({} as formSignIn);
+  const [user, setUser] = useState<formSignIn>({} as formSignIn);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   function signIn(users: string, password: string) {
-    if (users === 'a' && password === 'a') {
-      setUser({ user: users, password });
+    setIsLoading(true);
 
-      return user;
-    } else {
-      return user;
-    }
+    setTimeout(() => {
+      if (users === 'a' && password === 'a') {
+        setUser({ user: users, password });
+      } else {
+        setUser({} as formSignIn);
+      }
+      setIsLoading(false);
+    }, 1000);
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, user }}>
+    <AuthContext.Provider value={{ signIn, user, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
