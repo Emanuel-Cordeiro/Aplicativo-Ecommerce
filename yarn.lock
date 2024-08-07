@@ -2254,6 +2254,7 @@ __metadata:
     metro-react-native-babel-preset: 0.72.3
     phosphor-react-native: ^2.0.0
     react: 18.1.0
+    react-hook-form: ^7.52.2
     react-native: 0.70.6
     react-native-svg: ^15.5.0
     react-test-renderer: 18.1.0
@@ -8570,6 +8571,15 @@ __metadata:
     shell-quote: ^1.6.1
     ws: ^7
   checksum: c9e21ff2621447a6de51d4a350f3859e8077634f8be327f006d8da73dba349e78432ef910e432f066c615938fed697231ed3daee8f9eae049004c14ebac85625
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.52.2":
+  version: 7.52.2
+  resolution: "react-hook-form@npm:7.52.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 8621a21cf674f46507776741b2507d5357564af62bfc9dae8d1d7fb9076538352a48f16485885d3379d685d2d50537b28285322ad5a8c33d0ea5ddff21080543
   languageName: node
   linkType: hard
 

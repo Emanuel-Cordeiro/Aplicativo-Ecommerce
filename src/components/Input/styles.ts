@@ -1,3 +1,4 @@
+import { TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 export const ContainerInput = styled.View`
@@ -6,7 +7,7 @@ export const ContainerInput = styled.View`
   margin: 20px;
 `;
 
-export const TextInputComponent = styled.TextInput`
+export const TextInputComponent = styled(TextInput)`
   height: 40px;
   border: 1px;
   border-radius: 5px;
