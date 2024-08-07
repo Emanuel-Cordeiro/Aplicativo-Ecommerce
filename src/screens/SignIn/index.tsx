@@ -5,22 +5,29 @@ import { Controller, useForm } from 'react-hook-form';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import { useTheme } from '../../context/ThemeContext';
 
-import { ContainerForm, ContainerIcon, IconButton } from './styles';
+import { formSignIn } from '../../dto/formSignInDTO';
 
-type formSignIn = {
-  user: string;
-  password: string;
-};
+import {
+  ContainerForm,
+  ContainerIcon,
+  IconButton,
+  SubTitle,
+  Title,
+} from './styles';
 
 const SignIn = () => {
+  const { signIn } = useAuth();
+
   const { isDarkMode, setIsDarkMode, theme } = useTheme();
 
   const { control, handleSubmit, setFocus } = useForm<formSignIn>();
 
   function handleSignIn(data: formSignIn) {
-    console.log(data);
+    signIn(data.user, data.password);
   }
 
   const handleSetFocus = (fieldName: 'user' | 'password') => {
@@ -30,6 +37,9 @@ const SignIn = () => {
   return (
     <>
       <ContainerForm>
+        <Title>Emulator</Title>
+        <SubTitle>E-commerce</SubTitle>
+
         <ContainerIcon>
           <IconButton onPress={() => setIsDarkMode(!isDarkMode)}>
             {isDarkMode ? (
@@ -45,9 +55,9 @@ const SignIn = () => {
           control={control}
           render={({ field: { value, onChange } }) => (
             <Input
+              label={'Usuário'}
               value={value}
               onChangeText={onChange}
-              label={'Usuário'}
               onSubmitEditing={() => handleSetFocus('password')}
             />
           )}
@@ -58,10 +68,10 @@ const SignIn = () => {
           control={control}
           render={({ field: { value, onChange } }) => (
             <Input
-              secureTextEntry
+              label={'Senha'}
               value={value}
               onChangeText={onChange}
-              label={'Senha'}
+              secureTextEntry
             />
           )}
         />

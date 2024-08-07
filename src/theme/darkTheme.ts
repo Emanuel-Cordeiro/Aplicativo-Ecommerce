@@ -1,8 +1,7 @@
 const darkTheme = {
   colors: {
     input_background: '#262626',
-    text_color: '#f8fdff',
-    border_color: '#c4c4cc',
+    text_color: '#f2f2f2',
     button_background: '#06bcee',
     button_text: '#f8fdff',
     application_background: '#191919',

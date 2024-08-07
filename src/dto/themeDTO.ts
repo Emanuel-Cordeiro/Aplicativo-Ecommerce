@@ -2,7 +2,6 @@ export type themeType = {
   colors: {
     input_background: string;
     text_color: string;
-    border_color: string;
     button_background: string;
     button_text: string;
     application_background: string;

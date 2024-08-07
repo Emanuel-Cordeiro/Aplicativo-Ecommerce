@@ -15,3 +15,17 @@ export const ContainerForm = styled.View`
   height: 100%;
   justify-content: center;
 `;
+
+export const Title = styled.Text`
+  font-size: 60px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.text_color};
+  font-family: ${({ theme }) => theme.font_family.bold};
+`;
+
+export const SubTitle = styled.Text`
+  font-size: 30px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.text_color};
+  font-family: ${({ theme }) => theme.font_family.bold};
+`;

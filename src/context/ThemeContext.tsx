@@ -1,7 +1,6 @@
 import React, {
   createContext,
   Dispatch,
-  ReactNode,
   SetStateAction,
   useContext,
   useState,
@@ -12,6 +11,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { themeType } from '../dto/themeDTO';
 
+import { ChildrenProp } from '../@types/children';
+
 import darkTheme from '../theme/darkTheme';
 import lightTheme from '../theme/lightTheme';
 
@@ -21,17 +22,13 @@ type ThemeContextProps = {
   theme: themeType;
 };
 
-type ThemeProviderProps = {
-  children: ReactNode;
-};
-
 export const ThemeContext = createContext<ThemeContextProps>(
   {} as ThemeContextProps,
 );
 
 export const useTheme = () => useContext(ThemeContext);
 
-export function ThemeContextProvider({ children }: ThemeProviderProps) {
+export function ThemeContextProvider({ children }: ChildrenProp) {
   const [isDarkMode, setIsDarkMode] = useState(useColorScheme() === 'dark');
 
   const theme = !isDarkMode ? darkTheme : lightTheme;

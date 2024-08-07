@@ -1,8 +1,9 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 
-import SignIn from './src/screens/SignIn';
+import { Routes } from './src/routes';
 
+import { AuthContextProvider } from './src/context/AuthContextProvider';
 import { ThemeContextProvider, useTheme } from './src/context/ThemeContext';
 
 const AppContent = () => {
@@ -16,7 +17,7 @@ const AppContent = () => {
         backgroundColor={theme.colors.application_background}
       />
 
-      <SignIn />
+      <Routes />
     </SafeAreaView>
   );
 };
@@ -24,7 +25,9 @@ const AppContent = () => {
 const App = () => {
   return (
     <ThemeContextProvider>
-      <AppContent />
+      <AuthContextProvider>
+        <AppContent />
+      </AuthContextProvider>
     </ThemeContextProvider>
   );
 };

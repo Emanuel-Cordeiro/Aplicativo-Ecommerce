@@ -2,7 +2,6 @@ const lightTheme = {
   colors: {
     input_background: '#ffffff',
     text_color: '#333333',
-    border_color: '#cccccc',
     button_background: '#06bcee',
     button_text: '#f8fdff',
     application_background: '#f5f5f5',
