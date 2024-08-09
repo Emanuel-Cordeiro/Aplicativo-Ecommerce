@@ -1,26 +1,42 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Button, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../context/ThemeContext';
+import { ContainerButtons, ContainerIcon, IconButton } from './styles';
+import { Moon, SignOut, Sun } from 'phosphor-react-native';
 
 const CustomDrawerContent = (props: any) => {
   const { signOut } = useAuth();
-  const { isDarkMode, setIsDarkMode } = useTheme();
+  const { isDarkMode, setIsDarkMode, theme } = useTheme();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <View style={{ marginBottom: 20, padding: 20 }}>
-        <Button title="Sign Out" onPress={signOut} />
-        <Button title="Themes" onPress={() => setIsDarkMode(!isDarkMode)} />
-      </View>
+
+      <ContainerButtons style={{ marginBottom: 20, padding: 20 }}>
+        <ContainerIcon>
+          <IconButton onPress={signOut}>
+            <SignOut size={32} color={theme.colors.text_color} weight="bold" />
+          </IconButton>
+        </ContainerIcon>
+
+        <ContainerIcon>
+          <IconButton onPress={() => setIsDarkMode(!isDarkMode)}>
+            {isDarkMode ? (
+              <Moon size={32} color={theme.colors.text_color} weight="fill" />
+            ) : (
+              <Sun size={32} color={theme.colors.text_color} weight="fill" />
+            )}
+          </IconButton>
+        </ContainerIcon>
+      </ContainerButtons>
     </SafeAreaView>
   );
 };
