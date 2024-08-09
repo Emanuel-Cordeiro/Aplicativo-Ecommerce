@@ -33,7 +33,7 @@ const SignIn = () => {
   const handleSetFocus = (fieldName: 'user' | 'password') => {
     setFocus(fieldName);
   };
-
+  console.log(theme.colors.application_background);
   return (
     <>
       <ContainerForm>

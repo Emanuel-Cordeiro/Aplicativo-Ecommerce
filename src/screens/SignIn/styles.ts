@@ -14,6 +14,7 @@ export const ContainerForm = styled.View`
   width: 100%;
   height: 100%;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.application_background};
 `;
 
 export const Title = styled.Text`

@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 

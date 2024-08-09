@@ -7,6 +7,7 @@ type AuthContextData = {
   user: formSignIn;
   isLoading: boolean;
   signIn: (user: string, password: string) => void;
+  signOut: () => void;
 };
 
 export const AuthContext = createContext<AuthContextData>(
@@ -36,8 +37,12 @@ export function AuthContextProvider({ children }: ChildrenProp) {
     }, 1000);
   }
 
+  function signOut() {
+    setUser({} as formSignIn);
+  }
+
   return (
-    <AuthContext.Provider value={{ signIn, user, isLoading }}>
+    <AuthContext.Provider value={{ signIn, signOut, user, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
