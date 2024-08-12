@@ -1,10 +1,10 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Home from '../../screens/Home';
-import Profile from '../../screens/Profile';
-import CustomDrawerContent from '../../components/CustomDrawerContent';
-import { useTheme } from '../../context/ThemeContext';
+import Home from '../screens/Home';
+import Profile from '../screens/Profile';
+import CustomDrawerContent from '../components/CustomDrawerContent';
+import { useTheme } from '../context/ThemeContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,8 +23,22 @@ export function AppRoutes() {
           backgroundColor: theme.colors.application_background,
         },
       }}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: 'Início',
+          unmountOnBlur: true,
+        }}
+      />
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Perfil',
+          unmountOnBlur: true,
+        }}
+      />
     </Drawer.Navigator>
   );
 }

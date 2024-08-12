@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AppRoutes } from './App';
-import { AuthRoutes } from './Auth';
+import { AppRoutes } from './app.routes';
+import { AuthRoutes } from './auth.routes';
 
 import { useAuth } from '../hooks/useAuth';
 import Loading from '../components/Loading';

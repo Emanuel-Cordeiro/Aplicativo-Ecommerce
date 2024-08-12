@@ -9,10 +9,8 @@ export const ContainerInput = styled.View`
 
 export const TextInputComponent = styled(TextInput)`
   height: 40px;
-
   border-radius: 5px;
   padding: 10px;
-
   background-color: ${({ theme }) => theme.colors.input_background};
   color: ${({ theme }) => theme.colors.text_color};
   font_size: ${({ theme }) => theme.font_size.md}px;

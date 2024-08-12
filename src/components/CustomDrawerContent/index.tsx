@@ -7,8 +7,9 @@ import {
 } from '@react-navigation/drawer';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../context/ThemeContext';
-import { ContainerButtons, ContainerIcon, IconButton } from './styles';
+import { ContainerButtons } from './styles';
 import { Moon, SignOut, Sun } from 'phosphor-react-native';
+import Icon from '../Icon';
 
 const CustomDrawerContent = (props: any) => {
   const { signOut } = useAuth();
@@ -21,21 +22,17 @@ const CustomDrawerContent = (props: any) => {
       </DrawerContentScrollView>
 
       <ContainerButtons style={{ marginBottom: 20, padding: 20 }}>
-        <ContainerIcon>
-          <IconButton onPress={signOut}>
-            <SignOut size={32} color={theme.colors.text_color} weight="bold" />
-          </IconButton>
-        </ContainerIcon>
+        <Icon onPress={signOut}>
+          <SignOut size={32} color={theme.colors.text_color} weight="bold" />
+        </Icon>
 
-        <ContainerIcon>
-          <IconButton onPress={() => setIsDarkMode(!isDarkMode)}>
-            {isDarkMode ? (
-              <Moon size={32} color={theme.colors.text_color} weight="fill" />
-            ) : (
-              <Sun size={32} color={theme.colors.text_color} weight="fill" />
-            )}
-          </IconButton>
-        </ContainerIcon>
+        <Icon onPress={() => setIsDarkMode(!isDarkMode)}>
+          {isDarkMode ? (
+            <Moon size={32} color={theme.colors.text_color} weight="fill" />
+          ) : (
+            <Sun size={32} color={theme.colors.text_color} weight="fill" />
+          )}
+        </Icon>
       </ContainerButtons>
     </SafeAreaView>
   );

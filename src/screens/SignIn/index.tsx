@@ -2,6 +2,7 @@ import React from 'react';
 import { Moon, Sun } from 'phosphor-react-native';
 import { Controller, useForm } from 'react-hook-form';
 
+import Icon from '../../components/Icon';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -11,13 +12,7 @@ import { useTheme } from '../../context/ThemeContext';
 
 import { formSignIn } from '../../dto/formSignInDTO';
 
-import {
-  ContainerForm,
-  ContainerIcon,
-  IconButton,
-  SubTitle,
-  Title,
-} from './styles';
+import { ContainerForm, SubTitle, Title } from './styles';
 
 const SignIn = () => {
   const { signIn } = useAuth();
@@ -33,22 +28,20 @@ const SignIn = () => {
   const handleSetFocus = (fieldName: 'user' | 'password') => {
     setFocus(fieldName);
   };
-  console.log(theme.colors.application_background);
+
   return (
     <>
       <ContainerForm>
         <Title>Emulator</Title>
         <SubTitle>E-commerce</SubTitle>
 
-        <ContainerIcon>
-          <IconButton onPress={() => setIsDarkMode(!isDarkMode)}>
-            {isDarkMode ? (
-              <Moon size={32} color={theme.colors.text_color} weight="fill" />
-            ) : (
-              <Sun size={32} color={theme.colors.text_color} weight="fill" />
-            )}
-          </IconButton>
-        </ContainerIcon>
+        <Icon onPress={() => setIsDarkMode(!isDarkMode)}>
+          {isDarkMode ? (
+            <Moon size={32} color={theme.colors.text_color} weight="fill" />
+          ) : (
+            <Sun size={32} color={theme.colors.text_color} weight="fill" />
+          )}
+        </Icon>
 
         <Controller
           name="user"

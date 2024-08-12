@@ -1,23 +1,32 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { Platform, SafeAreaView, StatusBar } from 'react-native';
 
-import Routes from './src/routes';
 import { AuthContextProvider } from './src/context/AuthContextProvider';
 import { ThemeContextProvider, useTheme } from './src/context/ThemeContext';
+
+import Routes from './src/routes/routes';
 
 const AppContent = () => {
   const { isDarkMode, theme } = useTheme();
 
   return (
-    <SafeAreaView
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{ flex: 1, backgroundColor: theme.colors.application_background }}>
+    <>
       <StatusBar
         barStyle={!isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={theme.colors.application_background}
+        translucent
       />
-      <Routes />
-    </SafeAreaView>
+
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.application_background,
+          marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+        }}>
+        <Routes />
+      </SafeAreaView>
+    </>
   );
 };
 
