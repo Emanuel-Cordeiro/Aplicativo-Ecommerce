@@ -1,15 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import { Moon, SignOut, Sun } from 'phosphor-react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+
+import Icon from '../Icon';
+
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../context/ThemeContext';
+
 import { ContainerButtons } from './styles';
-import { Moon, SignOut, Sun } from 'phosphor-react-native';
-import Icon from '../Icon';
 
 const CustomDrawerContent = (props: any) => {
   const { signOut } = useAuth();

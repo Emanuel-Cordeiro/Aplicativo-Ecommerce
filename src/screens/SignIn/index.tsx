@@ -19,9 +19,15 @@ const SignIn = () => {
 
   const { isDarkMode, setIsDarkMode, theme } = useTheme();
 
-  const { control, handleSubmit, setFocus } = useForm<formSignIn>();
+  const {
+    control,
+    handleSubmit,
+    setFocus,
+    register,
+    formState: { errors },
+  } = useForm<formSignIn>();
 
-  function handleSignIn(data: formSignIn) {
+  async function handleSignIn(data: formSignIn) {
     signIn(data.user, data.password);
   }
 
@@ -50,8 +56,12 @@ const SignIn = () => {
             <Input
               label={'Usuário'}
               value={value}
+              errorMessage={errors.user}
               onChangeText={onChange}
               onSubmitEditing={() => handleSetFocus('password')}
+              {...register('user', {
+                required: 'Usuário inválido',
+              })}
             />
           )}
         />
@@ -63,8 +73,12 @@ const SignIn = () => {
             <Input
               label={'Senha'}
               value={value}
+              errorMessage={errors.password}
               onChangeText={onChange}
               secureTextEntry
+              {...register('password', {
+                required: 'Senha inválida',
+              })}
             />
           )}
         />

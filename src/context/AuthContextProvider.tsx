@@ -1,6 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
 
+import { api } from '../utils/api';
+
 import { ChildrenProp } from '../@types/children';
+
 import { formSignIn } from '../dto/formSignInDTO';
 
 type AuthContextData = {
@@ -24,17 +27,28 @@ export function AuthContextProvider({ children }: ChildrenProp) {
     }, 1000);
   }, []);
 
-  function signIn(users: string, password: string) {
+  async function signIn(users: string, password: string) {
     setIsLoading(true);
 
-    setTimeout(() => {
-      if (users === 'a' && password === 'a') {
+    try {
+      const response = await api.post(
+        '/auth/login',
+        JSON.stringify({
+          username: users,
+          password: password,
+        }),
+      );
+
+      if (response.status === 200) {
         setUser({ user: users, password });
       } else {
         setUser({} as formSignIn);
       }
+    } catch (error) {
+      console.log(`err ${error}`);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   }
 
   function signOut() {

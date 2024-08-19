@@ -1,30 +1,51 @@
-import React from 'react';
-import { Container, Inline, InlineItem } from './styles';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
+
+import { api } from '../../utils/api';
+
+import {
+  CategoryTitle,
+  ContainerScroll,
+  ProductBackground,
+  SidewaysScrollView,
+  ContainerTitleProduct,
+} from './styles';
 
 const Home = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const response = await api.get('/products/category-list/?limit=7');
+
+      setCategories(response.data);
+    }
+
+    fetchCategories();
+  }, []);
+
   return (
-    <Container>
-      <Inline>
-        <InlineItem>
-          <Button title="Home" />
-        </InlineItem>
-        <InlineItem>
-          <Button title="Home" />
-        </InlineItem>
-      </Inline>
-      <Button title="Home" />
-      <Input label="Home" />
-      <Inline>
-        <InlineItem>
-          <Input label="Home" />
-        </InlineItem>
-        <InlineItem>
-          <Input label="Home" />
-        </InlineItem>
-      </Inline>
-    </Container>
+    <ContainerScroll showsVerticalScrollIndicator={false}>
+      {categories.map(category => (
+        <SidewaysScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <ContainerTitleProduct>
+            <CategoryTitle>{category}</CategoryTitle>
+            <ProductBackground>
+              <Text
+                style={{ color: 'white', textAlign: 'center', fontSize: 30 }}>
+                {category} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              </Text>
+            </ProductBackground>
+            <ProductBackground>
+              <Text
+                style={{ color: 'white', textAlign: 'center', fontSize: 30 }}>
+                {category} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              </Text>
+            </ProductBackground>
+          </ContainerTitleProduct>
+        </SidewaysScrollView>
+      ))}
+    </ContainerScroll>
   );
 };
 
