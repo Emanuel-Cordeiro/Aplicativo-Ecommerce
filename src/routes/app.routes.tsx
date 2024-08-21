@@ -1,10 +1,12 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Home from '../screens/Home';
 import Profile from '../screens/Profile';
-import CustomDrawerContent from '../components/CustomDrawerContent';
 import { useTheme } from '../context/ThemeContext';
+import CustomDrawerContent from '../components/CustomDrawerContent';
+
+import { Home } from '../screens/Home';
+import Homee from '../screens/Homee';
 
 const Drawer = createDrawerNavigator();
 
@@ -13,7 +15,7 @@ export function AppRoutes() {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="Profile"
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
@@ -36,6 +38,14 @@ export function AppRoutes() {
         component={Profile}
         options={{
           title: 'Perfil',
+          unmountOnBlur: true,
+        }}
+      />
+      <Drawer.Screen
+        name="Homee"
+        component={Homee}
+        options={{
+          title: 'teste',
           unmountOnBlur: true,
         }}
       />

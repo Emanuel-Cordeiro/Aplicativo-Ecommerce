@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 
 import { api } from '../utils/api';
 
@@ -19,16 +19,10 @@ export const AuthContext = createContext<AuthContextData>(
 
 export function AuthContextProvider({ children }: ChildrenProp) {
   const [user, setUser] = useState<formSignIn>({} as formSignIn);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function signIn(users: string, password: string) {
-    setIsLoading(true);
+    // setIsLoading(true);
 
     try {
       const response = await api.post(
@@ -39,8 +33,18 @@ export function AuthContextProvider({ children }: ChildrenProp) {
         }),
       );
 
+      const { id, username, email, firstName, lastName } = response.data;
+
       if (response.status === 200) {
-        setUser({ user: users, password });
+        setUser({
+          id,
+          username,
+          password,
+          email,
+          firstName,
+          lastName,
+          profileImgUrl: response.data.image,
+        });
       } else {
         setUser({} as formSignIn);
       }

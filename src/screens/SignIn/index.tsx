@@ -28,10 +28,10 @@ const SignIn = () => {
   } = useForm<formSignIn>();
 
   async function handleSignIn(data: formSignIn) {
-    signIn(data.user, data.password);
+    signIn(data.username, data.password);
   }
 
-  const handleSetFocus = (fieldName: 'user' | 'password') => {
+  const handleSetFocus = (fieldName: 'username' | 'password') => {
     setFocus(fieldName);
   };
 
@@ -50,16 +50,16 @@ const SignIn = () => {
         </Icon>
 
         <Controller
-          name="user"
+          name="username"
           control={control}
           render={({ field: { value, onChange } }) => (
             <Input
               label={'Usuário'}
               value={value}
-              errorMessage={errors.user}
+              errorMessage={errors.username}
               onChangeText={onChange}
               onSubmitEditing={() => handleSetFocus('password')}
-              {...register('user', {
+              {...register('username', {
                 required: 'Usuário inválido',
               })}
             />

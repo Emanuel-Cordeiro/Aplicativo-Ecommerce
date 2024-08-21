@@ -1,5 +1,9 @@
 import { TextInput } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+interface TextInputComponentProps {
+  editable: boolean;
+}
 
 export const Container = styled.View`
   height: 60px;
@@ -11,13 +15,20 @@ export const ContainerInput = styled.View`
   height: 40px;
 `;
 
-export const TextInputComponent = styled(TextInput)`
+export const TextInputComponent = styled(TextInput) <TextInputComponentProps>`
   height: 40px;
   border-radius: 5px;
   padding: 10px;
   background-color: ${({ theme }) => theme.colors.input_background};
   color: ${({ theme }) => theme.colors.text_color};
   font_size: ${({ theme }) => theme.font_size.md}px;
+
+  ${props =>
+    !props.editable &&
+    css`
+      background-color: #202020;
+      color: #606060;
+    `}
 `;
 
 export const Label = styled.Text`

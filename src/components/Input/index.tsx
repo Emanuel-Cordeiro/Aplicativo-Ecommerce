@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, TextInputProps, View } from 'react-native';
+import { FieldError } from 'react-hook-form';
 
 import {
   Container,
@@ -8,22 +9,25 @@ import {
   TextError,
   TextInputComponent,
 } from './styles';
-import { FieldError } from 'react-hook-form';
 
 type InputProps = TextInputProps & {
   label: string;
-  errorMessage: FieldError | undefined;
+  errorMessage?: FieldError | undefined;
+  editable?: boolean;
 };
 
 const Input = React.forwardRef<TextInput, InputProps>(
-  ({ label, errorMessage, ...rest }: InputProps, ref) => {
+  (
+    { label, errorMessage = undefined, editable = true, ...rest }: InputProps,
+    ref,
+  ) => {
     const error = errorMessage?.message !== undefined;
 
     return (
       <Container>
         <ContainerInput>
           <Label>{label}</Label>
-          <TextInputComponent ref={ref} {...rest} />
+          <TextInputComponent ref={ref} editable={editable} {...rest} />
           {error ? <TextError>{errorMessage?.message}</TextError> : <View />}
         </ContainerInput>
       </Container>
