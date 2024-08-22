@@ -1,5 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Text } from 'react-native';
+
+import { api } from '../../utils/api';
+
+import { Header } from '../../components/Header';
+
 import {
   CategoryTitle,
   Container,
@@ -7,8 +13,8 @@ import {
   ContainerTitleProduct,
   ProductBackground,
   SidewaysScrollView,
+  Title,
 } from './styles';
-import { api } from '../../utils/api';
 
 interface ProductsPromotionType {
   title: string;
@@ -16,71 +22,81 @@ interface ProductsPromotionType {
   category: string;
 }
 
+interface CategoryPromotionType {
+  [key: string]: ProductsPromotionType[];
+}
+
 export function Home() {
-  const [products, setProducts] = useState<ProductsPromotionType[]>([]);
+  const [products, setProducts] = useState<CategoryPromotionType>({});
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     async function fetchProducts() {
-      let response = await api.get(
-        '/products?sortBy=discountPercentage,category&order=desc',
-      );
+      try {
+        const response = await api.get(
+          '/products?sortBy=discountPercentage,category&order=desc',
+        );
 
-      const productsArray = response.data.products.map(
-        (product: ProductsPromotionType) => {
-          return {
+        const productsArray = response.data.products.map(
+          (product: ProductsPromotionType) => ({
             title: product.title,
-            imgUrl: product.thumbnail,
+            thumbnail: product.thumbnail,
             category: product.category,
-          };
-        },
-      );
+          }),
+        );
 
-      const groupedItems = productsArray.reduce((acc: any, item: any) => {
-        if (!acc[item.category]) {
-          acc[item.category] = [];
-        }
+        const groupedItems = productsArray.reduce(
+          (acc: CategoryPromotionType, item: ProductsPromotionType) => {
+            if (!acc[item.category]) {
+              acc[item.category] = [];
+            }
 
-        acc[item.category].push(item);
+            acc[item.category].push(item);
+            return acc;
+          },
+          {},
+        );
 
-        return acc;
-      }, {});
-
-      const categoriesList = Object.keys(groupedItems);
-      setCategories(categoriesList);
-      setProducts(productsArray);
+        setCategories(Object.keys(groupedItems));
+        setProducts(groupedItems);
+      } catch (error) {
+        console.error('Erro ao buscar os produtos', error);
+      }
     }
 
     fetchProducts();
   }, []);
 
   return (
-    <Container showsVerticalScrollIndicator={false}>
-      {categories.map(category => (
-        <SidewaysScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          key={category}>
-          <ContainerTitleProduct>
-            <CategoryTitle>{category}</CategoryTitle>
-            <ContainerProducts>
-              {products?.map((product, indexs) => (
-                <ProductBackground key={indexs}>
-                  <Text
-                    // eslint-disable-next-line react-native/no-inline-styles
-                    style={{
-                      color: 'white',
-                      textAlign: 'center',
-                      fontSize: 18,
-                    }}>
-                    {product.title}
-                  </Text>
-                </ProductBackground>
-              ))}
-            </ContainerProducts>
-          </ContainerTitleProduct>
-        </SidewaysScrollView>
-      ))}
-    </Container>
+    <>
+      <Header />
+      <Container showsVerticalScrollIndicator={false}>
+        <Title>Promoções</Title>
+        {categories.map(category => (
+          <SidewaysScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            key={category}>
+            <ContainerTitleProduct>
+              <CategoryTitle>{category}</CategoryTitle>
+              <ContainerProducts>
+                {products[category]?.map((product, index) => (
+                  <ProductBackground key={index}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        textAlign: 'center',
+                        fontSize: 18,
+                      }}>
+                      {product.title}
+                    </Text>
+                  </ProductBackground>
+                ))}
+              </ContainerProducts>
+            </ContainerTitleProduct>
+          </SidewaysScrollView>
+        ))}
+      </Container>
+    </>
   );
 }

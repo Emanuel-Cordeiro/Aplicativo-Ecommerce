@@ -39,7 +39,7 @@ const SignIn = () => {
     <>
       <ContainerForm>
         <Title>Emulator</Title>
-        <SubTitle>E-commerce</SubTitle>
+        <SubTitle>E-commerce Solutions</SubTitle>
 
         <Icon onPress={() => setIsDarkMode(!isDarkMode)}>
           {isDarkMode ? (

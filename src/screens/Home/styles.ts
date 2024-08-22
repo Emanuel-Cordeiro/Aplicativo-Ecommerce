@@ -6,9 +6,17 @@ export const Container = styled.ScrollView`
   background-color: ${({ theme }) => theme.colors.application_background};
 `;
 
+export const Title = styled.Text`
+  color: ${({ theme }) => theme.colors.text_color};
+  font-size: ${({ theme }) => theme.font_size.xxxl}px;
+  font-family: ${({ theme }) => theme.font_family.bold};
+  margin-left: 10px;
+`;
+
+// Seção de rolagem dos produtos de cada categoria
 export const SidewaysScrollView = styled.ScrollView`
   height: 150px;
-  margin: 5px 5px 0 5px;
+  margin: 5px 10px 0 10px;
   border-radius: 5px;
   background-color: #404040;
 `;
@@ -17,7 +25,7 @@ export const CategoryTitle = styled.Text`
   color: ${({ theme }) => theme.colors.text_color};
   font-size: ${({ theme }) => theme.font_size.md}px;
   font-family: ${({ theme }) => theme.font_family.bold};
-  margin-left: 3px;
+  margin: 0 0 3px 3px;
   text-transform: capitalize;
 `;
 
@@ -37,3 +45,4 @@ export const ContainerProducts = styled.View`
   flex-direction: row;
   display: flex;
 `;
+// ---
