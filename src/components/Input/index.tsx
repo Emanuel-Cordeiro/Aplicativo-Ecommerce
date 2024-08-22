@@ -1,6 +1,6 @@
 import React from 'react';
-import { TextInput, TextInputProps, View } from 'react-native';
 import { FieldError } from 'react-hook-form';
+import { TextInput, TextInputProps, View } from 'react-native';
 
 import {
   Container,
@@ -12,8 +12,8 @@ import {
 
 type InputProps = TextInputProps & {
   label: string;
-  errorMessage?: FieldError | undefined;
   editable?: boolean;
+  errorMessage?: FieldError | undefined;
 };
 
 const Input = React.forwardRef<TextInput, InputProps>(
@@ -24,7 +24,7 @@ const Input = React.forwardRef<TextInput, InputProps>(
     const error = errorMessage?.message !== undefined;
 
     return (
-      <Container>
+      <Container error={error}>
         <ContainerInput>
           <Label>{label}</Label>
           <TextInputComponent ref={ref} editable={editable} {...rest} />

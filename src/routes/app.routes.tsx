@@ -1,11 +1,11 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Profile from '../screens/Profile';
 import { useTheme } from '../context/ThemeContext';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 
 import { Home } from '../screens/Home';
+import Profile from '../screens/Profile';
 import Homee from '../screens/Homee';
 
 const Drawer = createDrawerNavigator();

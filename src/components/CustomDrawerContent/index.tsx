@@ -26,7 +26,12 @@ const CustomDrawerContent = (props: any) => {
 
       <ContainerButtons style={{ marginBottom: 20, padding: 20 }}>
         <Icon onPress={signOut}>
-          <SignOut size={32} color={theme.colors.text_color} weight="bold" />
+          <SignOut
+            size={32}
+            color={theme.colors.text_color}
+            weight="bold"
+            mirrored
+          />
         </Icon>
 
         <Icon onPress={() => setIsDarkMode(!isDarkMode)}>

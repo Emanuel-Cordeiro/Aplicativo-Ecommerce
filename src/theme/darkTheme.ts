@@ -1,10 +1,12 @@
 const darkTheme = {
   colors: {
     input_background: '#262626',
+    input_background_disabled: '#202020',
     text_color: '#f2f2f2',
     text_error_color: '#f70a0a',
+    text_color_disabled: '#606060',
     button_background: '#06bcee',
-    button_text: '#f8fdff',
+    button_text: '#e5e5e5',
     application_background: '#191919',
   },
 

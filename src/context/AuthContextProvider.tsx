@@ -1,13 +1,14 @@
 import React, { createContext, useState } from 'react';
+import { Alert } from 'react-native';
 
 import { api } from '../utils/api';
 
 import { ChildrenProp } from '../@types/children';
 
-import { formSignIn } from '../dto/formSignInDTO';
+import { FormSignIn } from '../dto/formSignInDTO';
 
 type AuthContextData = {
-  user: formSignIn;
+  user: FormSignIn;
   isLoading: boolean;
   signIn: (user: string, password: string) => void;
   signOut: () => void;
@@ -18,7 +19,7 @@ export const AuthContext = createContext<AuthContextData>(
 );
 
 export function AuthContextProvider({ children }: ChildrenProp) {
-  const [user, setUser] = useState<formSignIn>({} as formSignIn);
+  const [user, setUser] = useState<FormSignIn>({} as FormSignIn);
   const [isLoading, setIsLoading] = useState(false);
 
   async function signIn(users: string, password: string) {
@@ -46,17 +47,20 @@ export function AuthContextProvider({ children }: ChildrenProp) {
           profileImgUrl: response.data.image,
         });
       } else {
-        setUser({} as formSignIn);
+        setUser({} as FormSignIn);
       }
     } catch (error) {
-      console.log(`err ${error}`);
+      Alert.alert(
+        'Atenção',
+        'Não foi possível fazer o login agora, tente novamente mais tarde.',
+      );
     } finally {
       setIsLoading(false);
     }
   }
 
   function signOut() {
-    setUser({} as formSignIn);
+    setUser({} as FormSignIn);
   }
 
   return (

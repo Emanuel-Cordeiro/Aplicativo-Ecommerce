@@ -19,3 +19,18 @@ export const Avatar = styled.Image`
   border-radius: 5px;
   border: 1px solid ${({ theme }) => theme.colors.text_color};
 `;
+
+export const Username = styled.Text`
+  color: ${({ theme }) => theme.colors.text_color};
+  font-size: ${({ theme }) => theme.font_size.xxl}px;
+  font-family: ${({ theme }) => theme.font_family.bold};
+  margin-top: 10px;
+`;
+
+export const ContainerButtons = styled.View`
+  flex-direction: row;
+`;
+
+export const ContainerButton = styled.View`
+  width: 50%;
+`;

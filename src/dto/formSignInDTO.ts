@@ -1,4 +1,4 @@
-export type formSignIn = {
+export interface FormSignIn {
   id: string;
   username: string;
   password: string;
@@ -6,4 +6,4 @@ export type formSignIn = {
   lastName: string;
   email: string;
   profileImgUrl: string;
-};
+}

@@ -1,20 +1,32 @@
-import { TextInput } from 'react-native';
+import { TextInput, View } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
 interface TextInputComponentProps {
   editable: boolean;
 }
 
-export const Container = styled.View`
-  height: 60px;
+interface ContainerProps {
+  error: boolean;
+}
+
+// eslint-disable-next-line prettier/prettier
+export const Container = styled(View) <ContainerProps>`
+  height: 40px;
   margin-bottom: 10px;
   margin: 20px;
+
+  ${props =>
+    props.error &&
+    css`
+      height: 60px;
+    `}
 `;
 
 export const ContainerInput = styled.View`
   height: 40px;
 `;
 
+// eslint-disable-next-line prettier/prettier
 export const TextInputComponent = styled(TextInput) <TextInputComponentProps>`
   height: 40px;
   border-radius: 5px;
@@ -26,8 +38,9 @@ export const TextInputComponent = styled(TextInput) <TextInputComponentProps>`
   ${props =>
     !props.editable &&
     css`
-      background-color: #202020;
-      color: #606060;
+      background-color: ${({ theme }) =>
+        theme.colors.input_background_disabled};
+      color: ${({ theme }) => theme.colors.text_color_disabled};
     `}
 `;
 

@@ -10,7 +10,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { useTheme } from '../../context/ThemeContext';
 
-import { formSignIn } from '../../dto/formSignInDTO';
+import { FormSignIn } from '../../dto/formSignInDTO';
 
 import { ContainerForm, SubTitle, Title } from './styles';
 
@@ -25,9 +25,9 @@ const SignIn = () => {
     setFocus,
     register,
     formState: { errors },
-  } = useForm<formSignIn>();
+  } = useForm<FormSignIn>();
 
-  async function handleSignIn(data: formSignIn) {
+  async function handleSignIn(data: FormSignIn) {
     signIn(data.username, data.password);
   }
 

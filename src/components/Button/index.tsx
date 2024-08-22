@@ -5,12 +5,13 @@ import { ButtonComponent, Container, Title } from './styles';
 
 type Props = TouchableOpacityProps & {
   title: string;
+  backgroundColor?: string;
 };
 
-const Button = ({ title, ...rest }: Props) => {
+const Button = ({ title, backgroundColor = '', ...rest }: Props) => {
   return (
     <Container>
-      <ButtonComponent {...rest}>
+      <ButtonComponent backgroundColor={backgroundColor} {...rest}>
         <Title>{title}</Title>
       </ButtonComponent>
     </Container>
