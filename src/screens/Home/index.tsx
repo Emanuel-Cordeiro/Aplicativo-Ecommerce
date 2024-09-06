@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 
 import { api } from '../../utils/api';
 
@@ -12,6 +10,8 @@ import {
   ContainerProducts,
   ContainerTitleProduct,
   ProductBackground,
+  ProductImage,
+  ProductTitle,
   SidewaysScrollView,
   Title,
 } from './styles';
@@ -82,14 +82,13 @@ export function Home() {
               <ContainerProducts>
                 {products[category]?.map((product, index) => (
                   <ProductBackground key={index}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        textAlign: 'center',
-                        fontSize: 18,
-                      }}>
+                    <ProductImage
+                      source={{ uri: product.thumbnail }}
+                      resizeMode="contain"
+                    />
+                    <ProductTitle numberOfLines={1}>
                       {product.title}
-                    </Text>
+                    </ProductTitle>
                   </ProductBackground>
                 ))}
               </ContainerProducts>

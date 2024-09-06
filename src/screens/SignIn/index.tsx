@@ -13,6 +13,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { FormSignIn } from '../../dto/formSignInDTO';
 
 import { ContainerForm, SubTitle, Title } from './styles';
+import { Logo } from '../../components/Logo';
 
 const SignIn = () => {
   const { signIn } = useAuth();
@@ -38,6 +39,8 @@ const SignIn = () => {
   return (
     <>
       <ContainerForm>
+        <Logo size={160} />
+
         <Title>Emulator</Title>
         <SubTitle>E-commerce Solutions</SubTitle>
 

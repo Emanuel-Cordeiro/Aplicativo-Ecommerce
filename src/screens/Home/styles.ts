@@ -46,3 +46,17 @@ export const ContainerProducts = styled.View`
   display: flex;
 `;
 // ---
+
+export const ProductImage = styled.Image`
+  height: 95px;
+  width: 110px;
+  border-radius: 5px;
+  background-color: #2b2b2d;
+`;
+
+export const ProductTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.text_color};
+  font-size: ${({ theme }) => theme.font_size.md}px;
+  font-family: ${({ theme }) => theme.font_family.regular};
+  padding-left: 5px;
+`;

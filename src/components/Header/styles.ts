@@ -1,9 +1,18 @@
 import styled from 'styled-components/native';
 
-export const ContainerHeader = styled.View`
+export const Background = styled.View`
   width: 100%;
   height: 100px;
   background-color: #333333;
+  align-items: center;
+`;
+
+export const ContainerHeader = styled.View`
+  width: 70%;
+  flex-direction: row;
+`;
+
+export const ContainerTitle = styled.View`
   align-items: center;
   justify-content: center;
 `;

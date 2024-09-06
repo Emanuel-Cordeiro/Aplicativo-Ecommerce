@@ -15,7 +15,7 @@ export function AppRoutes() {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Home"
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
